@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dấu ấn tuổi 18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --surface:#ffffff; --ink:#1f2328; --muted:#5d6470; --line:#e3ded4;
+  --accent:#c2410c;
+  --duc:#b91c1c; --duc-soft:#fdecec;
+  --tri:#1d4ed8; --tri-soft:#e9effd;
+  --the:#15803d; --the-soft:#e8f5ec;
+  --my:#7e22ce;  --my-soft:#f3eafb;
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16181c; --surface:#1f2228; --ink:#eceef1; --muted:#a3a9b3; --line:#30343b;
+    --accent:#fb923c;
+    --duc:#f87171; --duc-soft:#3a1f22; --tri:#7aa2ff; --tri-soft:#1e2740;
+    --the:#4ade80; --the-soft:#1a3123; --my:#c084fc; --my-soft:#2d2140;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16181c; --surface:#1f2228; --ink:#eceef1; --muted:#a3a9b3; --line:#30343b;
+  --accent:#fb923c;
+  --duc:#f87171; --duc-soft:#3a1f22; --tri:#7aa2ff; --tri-soft:#1e2740;
+  --the:#4ade80; --the-soft:#1a3123; --my:#c084fc; --my-soft:#2d2140;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,"Segoe UI",sans-serif;font-size:16px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav a{white-space:nowrap;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:6px 12px;border-radius:999px}
+nav a:hover{background:var(--surface);color:var(--ink)}
+header.hero{padding:56px 0 40px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.15;margin:10px 0 14px;font-weight:800}
+.lead{font-size:18px;color:var(--muted);max-width:720px;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:14px}
+section{padding:40px 0;border-top:1px solid var(--line)}
+h2{font-size:26px;margin:0 0 6px;font-weight:700}
+h2 .num{color:var(--accent);margin-right:8px}
+.sub{color:var(--muted);margin:0 0 24px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.card h3{margin:0 0 6px;font-size:18px}
+.card p{margin:0;color:var(--muted)}
+.step-n{display:inline-flex;width:30px;height:30px;border-radius:50%;align-items:center;justify-content:center;background:var(--accent);color:#fff;font-weight:700;margin-bottom:10px}
+.pillar{border-top:5px solid var(--c)}
+.pillar .big{font-size:28px;font-weight:800;color:var(--c)}
+details.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px}
+details.q summary{cursor:pointer;font-weight:600}
+details.q p{margin:10px 0 0;color:var(--muted)}
+/* Nhóm */
+.groups{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.gbtn{all:unset;cursor:pointer;display:block;background:var(--surface);border:2px solid var(--line);border-radius:var(--radius);padding:18px;transition:transform .15s,border-color .15s}
+.gbtn:hover{transform:translateY(-2px);border-color:var(--c)}
+.gbtn:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.gbtn[aria-pressed="true"]{border-color:var(--c);background:var(--cs)}
+.gbtn .tag{font-size:13px;font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:.06em}
+.gbtn .name{font-size:19px;font-weight:700;margin:4px 0 6px}
+.gbtn .desc{font-size:14px;color:var(--muted)}
+.panel{margin-top:22px;background:var(--surface);border:2px solid var(--c);border-radius:var(--radius);overflow:hidden}
+.panel-head{background:var(--cs);padding:20px 22px}
+.panel-head h3{margin:0;font-size:22px;color:var(--c)}
+.panel-head p{margin:4px 0 0;color:var(--muted)}
+.panel-body{padding:22px;display:grid;gap:26px}
+.blk h4{margin:0 0 4px;font-size:16px}
+.blk .hint{font-size:14px;color:var(--muted);margin:0 0 12px}
+.fixed li{margin-bottom:6px}
+.badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--c);color:#fff;margin-left:6px;vertical-align:middle}
+.opts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer}
+.opt:hover{border-color:var(--c)}
+.opt input{margin-top:4px;width:18px;height:18px;accent-color:var(--c);flex:none}
+.opt.on{border-color:var(--c);background:var(--cs)}
+.opt b{display:block}
+.opt span{font-size:14px;color:var(--muted)}
+label.f{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+input[type=text],textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:80px;resize:vertical}
+.row2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+button.b{font:inherit;font-weight:600;border:0;border-radius:10px;padding:11px 18px;cursor:pointer;background:var(--c,var(--accent));color:#fff}
+button.b.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.warn{color:var(--duc);font-size:14px;margin:0;min-height:1.2em}
+.ticket{white-space:pre-wrap;font-family:inherit;background:var(--bg);border:1px dashed var(--c);border-radius:12px;padding:18px;margin:0;font-size:15px}
+/* Lịch */
+.timeline{display:grid;gap:0}
+.tl{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.tl:last-child{border-bottom:0}
+.tl .d{font-weight:700;color:var(--accent)}
+.tl p{margin:2px 0 0;color:var(--muted)}
+table{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px}
+th{font-size:14px;color:var(--muted);font-weight:600}
+.tbl{overflow-x:auto}
+.rules li{margin-bottom:8px}
+footer{padding:36px 0 60px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:560px){.tl{grid-template-columns:1fr;gap:2px}}
+@media print{
+  nav,header.hero,section:not(#phieu),footer{display:none}
+  #phieu .groups,#phieu .sub{display:none}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Mục lục">
+  <div class="wrap">
+    <a href="#dao-nguoc">Học đảo ngược</a>
+    <a href="#tu-hoc">Tự học</a>
+    <a href="#phieu">Chọn nhiệm vụ nhóm</a>
+    <a href="#lich">Lịch trình</a>
+    <a href="#danh-gia">Tiêu chí</a>
+    <a href="#luu-y">Lưu ý sản phẩm số</a>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow">Chủ đề 2 · Tôi trưởng thành · Lớp 12C8</div>
+  <h1>Dấu ấn tuổi 18 –<br>Kết nối và đam mê</h1>
+  <p class="lead">Bài học trước giờ lên lớp cho tiết <b>“Thể hiện sự trưởng thành của bản thân trong cuộc sống”</b>. Các em tự tìm hiểu ở nhà, chọn nhóm và chọn nhiệm vụ. Trên lớp, các nhóm sẽ báo cáo sản phẩm của mình.</p>
+  <div class="meta">
+    <span class="chip">Ngày học trên lớp: 10/11/2026</span>
+    <span class="chip">4 nhóm: Đức · Trí · Thể · Mỹ</span>
+    <span class="chip">1 bạn làm MC</span>
+  </div>
+</header>
+
+<main>
+<section id="dao-nguoc">
+  <div class="wrap">
+    <h2><span class="num">01</span>Lớp học đảo ngược là gì?</h2>
+    <p class="sub">Các em tự học và chuẩn bị ở nhà. Thời gian trên lớp dành cho việc báo cáo, trao đổi và phản biện.</p>
+    <div class="grid g3">
+      <div class="card"><div class="step-n">1</div><h3>Ở nhà: tìm hiểu</h3><p>Đọc phần Tự học bên dưới, suy nghĩ về 4 trụ cột trưởng thành và tự soi lại bản thân.</p></div>
+      <div class="card"><div class="step-n">2</div><h3>Ở nhà: chọn và làm</h3><p>Nhóm chọn trụ cột, làm phần nhiệm vụ <b>bắt buộc</b> và chọn thêm ít nhất <b>1 nhiệm vụ tự chọn</b>. Sau đó gửi phiếu nhận nhiệm vụ cho thầy/cô.</p></div>
+      <div class="card"><div class="step-n">3</div><h3>Trên lớp: báo cáo</h3><p>Mỗi nhóm báo cáo dự án trong khoảng 3 phút, MC dẫn dắt. Cả lớp nhận xét, đặt câu hỏi và phản biện.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="tu-hoc">
+  <div class="wrap">
+    <h2><span class="num">02</span>Tự học: 4 trụ cột của sự trưởng thành</h2>
+    <p class="sub">Trưởng thành không nằm ở lí thuyết. Nó thể hiện qua 4 mảnh ghép dưới đây.</p>
+    <div class="grid g4">
+      <div class="card pillar" style="--c:var(--duc)"><div class="big">Đức</div><h3>Trái tim</h3><p>Biết yêu thương, sống có trách nhiệm và cống hiến cho gia đình, lớp học, cộng đồng.</p></div>
+      <div class="card pillar" style="--c:var(--tri)"><div class="big">Trí</div><h3>Tư duy</h3><p>Tư duy độc lập, sáng tạo, tự quyết định hướng đi và biết làm chủ công nghệ, AI.</p></div>
+      <div class="card pillar" style="--c:var(--the)"><div class="big">Thể</div><h3>Kỷ luật</h3><p>Rèn luyện thân thể đều đặn, giữ kỷ luật với bản thân, bền bỉ vượt giới hạn.</p></div>
+      <div class="card pillar" style="--c:var(--my)"><div class="big">Mỹ</div><h3>Cái đẹp</h3><p>Biết cảm nhận và sáng tạo cái đẹp, sống biết ơn, tri ân và lan tỏa giá trị sống đẹp.</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 12px">Câu hỏi tự soi (không cần nộp, chuẩn bị để chia sẻ)</h3>
+    <details class="q"><summary>1. Năm nay mình đã tự quyết định được việc gì mà trước đây phải nhờ bố mẹ?</summary><p>Gợi ý: chọn khối thi, sắp xếp thời gian biểu, chi tiêu, giải quyết mâu thuẫn với bạn…</p></details>
+    <details class="q"><summary>2. Khi nhận được nhiều lời khuyên trái chiều, mình thường làm gì?</summary><p>Người trưởng thành biết lắng nghe, đối chiếu thông tin và tự chịu trách nhiệm với lựa chọn của mình.</p></details>
+    <details class="q"><summary>3. Đam mê của mình là gì, và mình đã kiên trì với nó đến đâu?</summary><p>Hãy nghĩ đến lần mình suýt bỏ cuộc mà vẫn tiếp tục. Đó chính là biểu hiện của ý chí.</p></details>
+    <details class="q"><summary>4. Tuổi 18, mình có thêm những quyền và trách nhiệm công dân nào?</summary><p>Ví dụ: quyền bầu cử, nghĩa vụ quân sự, tự chịu trách nhiệm pháp lí, cả trách nhiệm khi đăng tải nội dung trên mạng.</p></details>
+    <details class="q"><summary>5. Khi hỏi AI một vấn đề, mình có kiểm tra lại câu trả lời không?</summary><p>AI có thể trả lời sai hoặc thiếu bối cảnh. Hãy đối chiếu với ít nhất một nguồn tin cậy khác.</p></details>
+  </div>
+</section>
+
+<section id="phieu">
+  <div class="wrap">
+    <h2><span class="num">03</span>Chọn nhóm và nhận nhiệm vụ</h2>
+    <p class="sub">Bấm vào nhóm của em. Mỗi nhóm có phần <b>bắt buộc</b> theo kế hoạch bài dạy và các <b>nhiệm vụ tự chọn</b> để làm sản phẩm thêm phong phú. Chọn ít nhất 1 nhiệm vụ tự chọn, nhiều nhất 2 nhiệm vụ.</p>
+    <div class="groups" id="groups" role="group" aria-label="Chọn nhóm"></div>
+    <div id="panel"></div>
+  </div>
+</section>
+
+<section id="lich">
+  <div class="wrap">
+    <h2><span class="num">04</span>Lịch trình chuẩn bị</h2>
+    <p class="sub">Các mốc dưới đây để các nhóm theo dõi tiến độ. Thầy/cô có thể điều chỉnh nếu cần.</p>
+    <div class="card timeline">
+      <div class="tl"><div class="d">27/10</div><div><b>Chốt nhóm và nhiệm vụ</b><p>Nhóm trưởng gửi phiếu nhận nhiệm vụ (mục 03) cho thầy/cô. Lớp chọn 1 bạn làm MC.</p></div></div>
+      <div class="tl"><div class="d">02/11</div><div><b>Nộp kịch bản</b><p>Nộp kịch bản hoặc dàn ý nội dung báo cáo để thầy/cô góp ý.</p></div></div>
+      <div class="tl"><div class="d">07/11</div><div><b>Hoàn thiện sản phẩm</b><p>Video, bản phát thanh, đạo cụ, slide… hoàn chỉnh. Gửi bản số lên Padlet của lớp.</p></div></div>
+      <div class="tl"><div class="d">09/11</div><div><b>Tổng duyệt</b><p>Chạy thử phần báo cáo cùng MC, kiểm tra thời lượng (khoảng 3 phút mỗi nhóm) và thiết bị trình chiếu.</p></div></div>
+      <div class="tl"><div class="d">10/11</div><div><b>Báo cáo trên lớp</b><p>Các nhóm báo cáo dự án, mời gọi các bạn cùng đồng hành.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="danh-gia">
+  <div class="wrap">
+    <h2><span class="num">05</span>Tiêu chí đánh giá</h2>
+    <p class="sub">Thầy/cô sẽ nhận xét theo các tiêu chí sau. Các nhóm nên đọc trước khi làm sản phẩm.</p>
+    <div class="tbl">
+    <table>
+      <thead><tr><th style="width:30%">Tiêu chí</th><th>Thế nào là đạt tốt</th></tr></thead>
+      <tbody>
+        <tr><td><b>Thể hiện sự trưởng thành</b></td><td>Sản phẩm cho thấy rõ sự trưởng thành của bản thân trong cuộc sống, gắn với trụ cột của nhóm.</td></tr>
+        <tr><td><b>Phong thái trình bày</b></td><td>Tự tin, rõ ràng, đúng thời lượng, các thành viên đều có phần tham gia.</td></tr>
+        <tr><td><b>Tính sáng tạo</b></td><td>Hình thức mới lạ, phù hợp nội dung; có dấu ấn riêng của nhóm.</td></tr>
+        <tr><td><b>Công nghệ và ngoại ngữ</b></td><td>Dùng công nghệ số hợp lí; có thể lồng ghép tiếng Anh; dùng AI có chọn lọc và kiểm chứng.</td></tr>
+        <tr><td><b>Phản biện</b></td><td>Trả lời được câu hỏi của các bạn, biết bảo vệ quan điểm và tiếp thu ý kiến.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="luu-y">
+  <div class="wrap">
+    <h2><span class="num">06</span>Lưu ý khi làm sản phẩm số</h2>
+    <p class="sub">Áp dụng cho video, bản phát thanh, slide và mọi nội dung đăng lên Padlet.</p>
+    <div class="grid g3">
+      <div class="card"><h3>Bảo vệ dữ liệu cá nhân</h3><p>Không công khai số điện thoại, địa chỉ, ảnh riêng tư của mình hay người khác. Muốn quay hoặc chụp ai thì phải hỏi ý kiến người đó trước.</p></div>
+      <div class="card"><h3>Dùng AI có chọn lọc</h3><p>AI có thể sai hoặc thiếu bối cảnh. Hãy đối chiếu với nguồn tin cậy, ghi rõ phần nào có AI hỗ trợ và không sao chép nguyên văn.</p></div>
+      <div class="card"><h3>Tôn trọng bản quyền</h3><p>Ưu tiên tự quay, tự chụp, tự viết. Nếu dùng nhạc, ảnh trên mạng thì ghi nguồn.</p></div>
+    </div>
+
+    <h3 style="margin:32px 0 10px">Chuẩn bị thêm cho hoạt động rèn luyện “Cây trưởng thành”</h3>
+    <p style="color:var(--muted);margin:0">Trên lớp, mỗi em sẽ viết lên giấy nhớ một thông điệp, câu danh ngôn, châm ngôn hoặc bài học tâm đắc nhất về sự trưởng thành, gắn với một hoặc nhiều trụ cột Đức – Trí – Thể – Mỹ, rồi dán lên “Cây trưởng thành” của lớp. Các em nghĩ trước thông điệp muốn gửi gắm.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">Chủ đề 2 – Tôi trưởng thành · Hoạt động trải nghiệm, hướng nghiệp 12 · Bài học trước giờ lên lớp (lớp học đảo ngược)</div>
+</footer>
+
+<script>
+const GROUPS = [
+  {
+    id: "duc", name: "Nhóm Đức", project: "Gieo ấm áp – Trao yêu thương",
+    short: "Trái tim biết yêu thương và cống hiến cho cộng đồng.",
+    fixed: [
+      "Thực hiện dự án “Gieo ấm áp – Trao yêu thương”: lên kế hoạch và tổ chức một hoạt động thiện nguyện, lan tỏa yêu thương tới cộng đồng.",
+      "Chuẩn bị nội dung báo cáo dự án: kế hoạch, cách triển khai, hiệu quả bước đầu và mời gọi các bạn cùng đồng hành."
+    ],
+    options: [
+      { t: "Video hành trình thiện nguyện", d: "Quay, dựng video ngắn (1 đến 2 phút) ghi lại quá trình thực hiện dự án." },
+      { t: "Góc quyên góp tại lớp", d: "Đặt thùng quyên góp sách, đồ dùng; phân loại và bàn giao, có ảnh minh chứng." },
+      { t: "Lời kêu gọi đồng hành", d: "Thiết kế poster hoặc bài đăng kêu gọi các bạn trong trường cùng tham gia." },
+      { t: "Nhật ký yêu thương", d: "Mỗi thành viên ghi lại một việc tốt đã làm và cảm nhận của bản thân." }
+    ]
+  },
+  {
+    id: "tri", name: "Nhóm Trí", project: "Tọa đàm “Bản lĩnh tương lai – Bứt phá bản thân”",
+    short: "Tư duy độc lập, sáng tạo, biết làm chủ công nghệ AI.",
+    fixed: [
+      "Tổ chức tọa đàm “Bản lĩnh tương lai – Bứt phá bản thân”: phân vai MC, các diễn giả và người đặt câu hỏi.",
+      "Chuẩn bị nội dung tọa đàm liên quan đến sự trưởng thành của tuổi 18: tự học và quản lý thời gian, định hướng nghề nghiệp, bản lĩnh trước áp lực."
+    ],
+    options: [
+      { t: "Ứng dụng lập kế hoạch số", d: "Giới thiệu cách dùng ứng dụng để lập ma trận ưu tiên, đặt mục tiêu và kế hoạch học tập tuần." },
+      { t: "AI nói – Thực tế nói", d: "Hỏi AI về một ngành nghề, đối chiếu với nguồn tin cậy hoặc người làm nghề, chỉ ra chỗ AI nói đúng và sai." },
+      { t: "Khách mời qua video", d: "Phỏng vấn trước một cựu học sinh hoặc phụ huynh đang làm nghề, cắt thành clip 1 phút." },
+      { t: "Một phần bằng tiếng Anh", d: "Thực hiện một đoạn tọa đàm hoặc phần giới thiệu diễn giả bằng tiếng Anh." }
+    ]
+  },
+  {
+    id: "the", name: "Nhóm Thể", project: "Bứt phá giới hạn",
+    short: "Kỷ luật bản thân và sức bền thể chất.",
+    fixed: [
+      "Làm video ngắn nói về việc lên kế hoạch tập luyện thể thao để nâng cao sức khỏe.",
+      "Trải nghiệm tâng bóng, xoay bóng và ghi lại quá trình tiến bộ trong video."
+    ],
+    options: [
+      { t: "Thử thách 7 ngày", d: "Cả nhóm cùng thực hiện một thử thách tập luyện trong 7 ngày, ghi nhật ký và so sánh kết quả ngày đầu với ngày cuối." },
+      { t: "Mini-game trên lớp", d: "Hướng dẫn và mời 2 đến 3 bạn lên thử tâng bóng hoặc xoay bóng ngay trong giờ báo cáo." },
+      { t: "Infographic sống khỏe", d: "Thiết kế infographic kế hoạch tập luyện kèm chế độ ăn uống và giấc ngủ cho học sinh lớp 12 mùa ôn thi." },
+      { t: "Video song ngữ", d: "Lồng phụ đề hoặc thuyết minh tiếng Anh cho video của nhóm." }
+    ]
+  },
+  {
+    id: "my", name: "Nhóm Mỹ", project: "Sân khấu hóa “Sắc màu tri ân”",
+    short: "Sáng tạo nghệ thuật, lan tỏa lòng biết ơn và giá trị sống đẹp.",
+    fixed: [
+      "Dàn dựng tiết mục sân khấu hóa “Sắc màu tri ân”: viết kịch bản, phân vai, chuẩn bị trang phục và đạo cụ.",
+      "Thông qua tiết mục, thể hiện sự trưởng thành: biết trân trọng, tri ân cha mẹ, thầy cô và lan tỏa giá trị sống đẹp."
+    ],
+    options: [
+      { t: "Thiệp tri ân thầy cô", d: "Tự thiết kế thiệp hoặc bưu thiếp tri ân, có thể dùng vật liệu tái chế." },
+      { t: "Thơ, rap tri ân", d: "Sáng tác một đoạn thơ hoặc rap ngắn lồng vào tiết mục." },
+      { t: "Bản phát thanh “Lời cảm ơn”", d: "Thu một bản tin radio ngắn (1 đến 2 phút) gửi lời cảm ơn, phát làm phần mở màn." },
+      { t: "Bộ ảnh kỉ niệm", d: "Sưu tầm ảnh kỉ niệm với gia đình, thầy cô (đã xin phép) làm phông nền trình chiếu." }
+    ]
+  }
+];
+const COLORS = { duc: ["var(--duc)", "var(--duc-soft)"], tri: ["var(--tri)", "var(--tri-soft)"], the: ["var(--the)", "var(--the-soft)"], my: ["var(--my)", "var(--my-soft)"] };
+const KEY = "dauan18-phieu-v2";
+
+let state = { group: null, picks: {}, leader: "", members: "", idea: "", mc: false };
+try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s) state = Object.assign(state, s); } catch (e) {}
+function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const groupsEl = document.getElementById("groups");
+const panelEl = document.getElementById("panel");
+
+function renderGroups() {
+  groupsEl.innerHTML = GROUPS.map(g => {
+    const [c, cs] = COLORS[g.id];
+    return `<button class="gbtn" style="--c:${c};--cs:${cs}" data-id="${g.id}" aria-pressed="${state.group === g.id}">
+      <div class="tag">${esc(g.name)}</div>
+      <div class="name">${esc(g.project)}</div>
+      <div class="desc">${esc(g.short)}</div>
+    </button>`;
+  }).join("");
+}
+
+function renderPanel() {
+  const g = GROUPS.find(x => x.id === state.group);
+  if (!g) { panelEl.innerHTML = ""; return; }
+  const [c, cs] = COLORS[g.id];
+  const picks = state.picks[g.id] || [];
+  panelEl.innerHTML = `
+  <div class="panel" style="--c:${c};--cs:${cs}">
+    <div class="panel-head"><h3>${esc(g.name)} · ${esc(g.project)}</h3><p>${esc(g.short)}</p></div>
+    <div class="panel-body">
+      <div class="blk">
+        <h4>Nhiệm vụ bắt buộc <span class="badge">Theo kế hoạch bài dạy</span></h4>
+        <p class="hint">Đây là phần chính của dự án, nhóm nào cũng phải hoàn thành.</p>
+        <ol class="fixed">${g.fixed.map(f => `<li>${esc(f)}</li>`).join("")}</ol>
+      </div>
+      <div class="blk">
+        <h4>Nhiệm vụ tự chọn <span class="badge">Chọn 1 đến 2</span></h4>
+        <p class="hint">Chọn thêm hình thức để làm sản phẩm thêm phong phú, phù hợp với thế mạnh của nhóm.</p>
+        <div class="opts">${g.options.map((o, i) => `
+          <label class="opt ${picks.includes(i) ? "on" : ""}">
+            <input type="checkbox" data-opt="${i}" ${picks.includes(i) ? "checked" : ""}>
+            <div><b>${esc(o.t)}</b><span>${esc(o.d)}</span></div>
+          </label>`).join("")}</div>
+        <p class="warn" id="warn"></p>
+      </div>
+      <div class="blk">
+        <h4>Ý tưởng riêng của nhóm (không bắt buộc)</h4>
+        <p class="hint">Nếu nhóm có ý tưởng khác hay hơn, hãy ghi lại để thầy/cô duyệt.</p>
+        <textarea id="idea" placeholder="Ví dụ: nhóm muốn làm thêm…">${esc(state.idea)}</textarea>
+      </div>
+      <div class="blk">
+        <h4>Thông tin nhóm</h4>
+        <div class="row2" style="margin-top:10px">
+          <div><label class="f" for="leader">Nhóm trưởng</label><input type="text" id="leader" value="${esc(state.leader)}" placeholder="Họ và tên"></div>
+          <div><label class="f" for="members">Các thành viên</label><input type="text" id="members" value="${esc(state.members)}" placeholder="Cách nhau bởi dấu phẩy"></div>
+        </div>
+        <label class="opt ${state.mc ? "on" : ""}" style="margin-top:12px">
+          <input type="checkbox" id="mc" ${state.mc ? "checked" : ""}>
+          <div><b>Nhóm có bạn ứng cử làm MC</b><span>MC giới thiệu chủ đề, dẫn dắt và kết nối phần báo cáo của 4 nhóm.</span></div>
+        </label>
+      </div>
+      <div class="btns">
+        <button class="b" id="make">Tạo phiếu nhận nhiệm vụ</button>
+      </div>
+      <div id="out"></div>
+    </div>
+  </div>`;
+}
+
+function ticketText() {
+  const g = GROUPS.find(x => x.id === state.group);
+  const picks = (state.picks[g.id] || []).map(i => g.options[i]);
+  return [
+    "PHIẾU NHẬN NHIỆM VỤ – DẤU ẤN TUỔI 18",
+    `${g.name} · Dự án “${g.project}”`,
+    `Nhóm trưởng: ${state.leader || "…"}`,
+    `Thành viên: ${state.members || "…"}`,
+    "",
+    "Nhiệm vụ bắt buộc:",
+    ...g.fixed.map((f, i) => `  ${i + 1}. ${f}`),
+    "",
+    "Nhiệm vụ tự chọn:",
+    ...picks.map((o, i) => `  ${i + 1}. ${o.t}: ${o.d}`),
+    ...(state.idea.trim() ? ["", "Ý tưởng riêng: " + state.idea.trim()] : []),
+    ...(state.mc ? ["", "Nhóm có bạn ứng cử làm MC."] : []),
+    "",
+    "Hạn nộp kịch bản: 02/11 · Tổng duyệt: 09/11 · Báo cáo: 10/11/2026"
+  ].join("\n");
+}
+
+groupsEl.addEventListener("click", e => {
+  const b = e.target.closest(".gbtn");
+  if (!b) return;
+  state.group = b.dataset.id;
+  save(); renderGroups(); renderPanel();
+  panelEl.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+panelEl.addEventListener("change", e => {
+  const t = e.target;
+  if (t.dataset.opt !== undefined) {
+    const arr = state.picks[state.group] || (state.picks[state.group] = []);
+    const i = +t.dataset.opt;
+    const warn = document.getElementById("warn");
+    if (t.checked) {
+      if (arr.length >= 2) { t.checked = false; warn.textContent = "Mỗi nhóm chọn tối đa 2 nhiệm vụ tự chọn."; return; }
+      arr.push(i);
+    } else {
+      arr.splice(arr.indexOf(i), 1);
+    }
+    warn.textContent = "";
+    t.closest(".opt").classList.toggle("on", t.checked);
+  } else if (t.id === "mc") {
+    state.mc = t.checked;
+    t.closest(".opt").classList.toggle("on", t.checked);
+  }
+  save();
+});
+
+panelEl.addEventListener("input", e => {
+  const t = e.target;
+  if (t.id === "leader" || t.id === "members" || t.id === "idea") { state[t.id] = t.value; save(); }
+});
+
+panelEl.addEventListener("click", e => {
+  const out = document.getElementById("out");
+  if (e.target.id === "make") {
+    if (!(state.picks[state.group] || []).length) {
+      document.getElementById("warn").textContent = "Nhóm cần chọn ít nhất 1 nhiệm vụ tự chọn.";
+      return;
+    }
+    out.innerHTML = `<pre class="ticket" id="ticket"></pre>
+      <div class="btns" style="margin-top:12px">
+        <button class="b" id="copy">Sao chép phiếu</button>
+        <button class="b ghost" id="print">In phiếu</button>
+      </div>
+      <p class="hint" style="margin-top:8px;font-size:14px;color:var(--muted)">Gửi phiếu cho thầy/cô qua Zalo nhóm lớp hoặc nộp bản in trước ngày 27/10.</p>`;
+    document.getElementById("ticket").textContent = ticketText();
+  } else if (e.target.id === "copy") {
+    const txt = ticketText();
+    const done = () => { e.target.textContent = "Đã sao chép ✓"; };
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(done, () => fallbackCopy(txt, done));
+    else fallbackCopy(txt, done);
+  } else if (e.target.id === "print") {
+    window.print();
+  }
+});
+
+function fallbackCopy(txt, done) {
+  const ta = document.createElement("textarea");
+  ta.value = txt; document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); done(); } catch (e) {}
+  ta.remove();
+}
+
+renderGroups();
+renderPanel();
+</script>
+</body>
+</html>
